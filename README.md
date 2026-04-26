@@ -35,19 +35,189 @@ A **production-ready**, **hackathon-winning** intelligent healthcare assistant p
 
 ---
 
-## 🚀 Quick Start (5 minutes)
+## � Setup - Getting Started (IMPORTANT)
+
+### Prerequisites
+- Python 3.8+ 
+- Node.js 16+
+- Git
+- API keys (see below)
+
+### ⚙️ 1. Configure Environment Variables
+
+**Backend Setup:**
+```bash
+cd backend
+
+# Copy the example to create your .env
+cp .env.example .env
+
+# Edit .env with your actual API keys
+# Use your favorite editor (VS Code, nano, etc.)
+```
+
+**Required API Keys:**
+
+1. **Groq API Key** (LLaMA 3)
+   - Go to: https://console.groq.com/keys
+   - Sign up and create new API key
+   - Copy key (looks like: `gsk_xxxxxxxx...`)
+   - Add to `backend/.env`: `GROQ_API_KEY=gsk_xxxxx...`
+
+2. **HuggingFace Token** (BioBERT)
+   - Go to: https://huggingface.co/settings/tokens
+   - Create "Read" access token
+   - Add to `backend/.env`: `HUGGINGFACE_API_KEY=hf_xxxxx...`
+
+3. **MongoDB Atlas** (Optional - for persistence)
+   - Go to: https://www.mongodb.com/cloud/atlas
+   - Create free cluster
+   - Get connection string
+   - Add to `backend/.env`: `MONGODB_URI=mongodb+srv://user:pass@...`
+
+4. **Encryption Key** (Auto-generated, optional to change)
+   - Already generated in `.env`
+   - Or generate new: `python -c "import os; print(os.urandom(32).hex())"`
+
+### ⚠️ Security Notice
+- **NEVER commit `.env` file to Git** (already in `.gitignore`)
+- Only `.env.example` is committed (with placeholders)
+- Each team member creates their own `.env` with their API keys
+- For CI/CD: Set environment variables through GitHub Secrets, GitLab CI/CD, or your platform
+
+---
+
+## �🚀 Quick Start (5 minutes)
 
 ### Option 1: Full Local Setup
 
 ```bash
-# Clone project
+# Navigate to project
 cd aihealthcare
 
-# Setup Backend
+# ===== BACKEND SETUP =====
 cd backend
+
+# Create & activate virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# ✅ Make sure .env is configured with API keys (see Setup section above)
+
+# Start backend server
+python -m uvicorn app.main:app --reload
+
+# ✓ Backend running at http://localhost:8000
+# ✓ API docs at http://localhost:8000/docs
+```
+
+```bash
+# ===== FRONTEND SETUP (New Terminal) =====
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# ✓ Frontend running at http://localhost:3000
+```
+
+### ✅ Verify Everything Works
+
+1. **Backend API**: http://localhost:8000/docs (interactive API docs)
+2. **Frontend UI**: http://localhost:3000 (chat interface)
+3. **Try it**: Ask the chatbot a health question
+
+---
+
+## 📦 Running with Docker (Production-Ready)
+
+```bash
+# Build images
+docker-compose build
+
+# Run both services
+docker-compose up
+
+# Backend at http://localhost:8000
+# Frontend at http://localhost:3000
+```
+
+**Note:** Set environment variables in `.env` file or Docker environment.
+
+---
+
+## 🛠️ Project Structure
+
+```
+aihealthcare/
+├── backend/              # FastAPI + LLaMA 3 + BioBERT
+│   ├── app/
+│   │   ├── main.py       # FastAPI app
+│   │   ├── config.py     # Env config loader
+│   │   ├── models/       # Pydantic schemas
+│   │   ├── services/     # LLM, BioBERT, etc.
+│   │   └── utils/        # Database, encryption
+│   ├── tests/            # Test suite
+│   └── requirements.txt   # Python dependencies
+├── frontend/             # React + Tailwind + Vite
+│   ├── src/
+│   │   ├── pages/        # Chat, Insights, Security, Settings
+│   │   ├── components/   # Reusable components
+│   │   ├── store/        # Zustand state management
+│   │   └── api/          # API client
+│   └── package.json      # NPM dependencies
+├── docs/                 # Documentation
+└── .env.example          # Template (commit to repo)
+```
+
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed structure.
+
+---
+
+## 📚 Documentation
+
+- [🔑 API Keys Setup](docs/API_KEYS_SETUP.md) - How to get each API key
+- [🏗️ Architecture](docs/ARCHITECTURE.md) - System design & components
+- [⚙️ Backend Setup](docs/SETUP_GUIDE.md) - Detailed backend guide
+- [🚀 Production Deployment](docs/QUICK_START_PRODUCTION.md) - Deploy to AWS/Heroku/DigitalOcean
+- [🔒 Security](docs/BACKEND_IMPROVEMENTS.md) - Security best practices
+
+---
+
+## 🤝 Contributing
+
+1. Clone the repository
+2. Create your feature branch: `git checkout -b feature/my-feature`
+3. Create `.env` with your API keys (don't commit it)
+4. Make your changes
+5. Push to branch: `git push origin feature/my-feature`
+6. Open a Pull Request
+
+---
+
+## 📝 License
+
+MIT License - feel free to use for personal or commercial projects
+
+---
+
+## 🎓 Learning Resources
+
+- [FastAPI Docs](https://fastapi.tiangolo.com/)
+- [LLaMA 3 via Groq](https://console.groq.com/)
+- [BioBERT Medical NLP](https://huggingface.co/dmis-lab/biobert-base-cased-v1.1)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## ⭐ If you found this helpful, consider starring the repository!
 cp .env.example .env
 # Edit .env with your API keys
 
@@ -516,5 +686,6 @@ Open an issue on GitHub or check the documentation.
 **Version**: 1.0.0  
 **Last Updated**: 2024  
 **Status**: Production Ready ✅
-#   A I _ M e d i B o t  
+#   A I _ M e d i B o t 
+ 
  
