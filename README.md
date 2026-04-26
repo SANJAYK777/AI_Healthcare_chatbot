@@ -10,6 +10,31 @@ A full-stack, production-ready AI healthcare assistant that provides intelligent
 * **Modern Frontend:** Responsive UI built with React, Tailwind CSS, and Framer Motion.
 * **Robust Backend:** High-performance FastAPI server with a MongoDB database.
 
+## 🛠️ Tech Stack
+
+### Frontend
+* **React 18** (Vite)
+* **Tailwind CSS** (Styling)
+* **Framer Motion** (Animations)
+* **Zustand** (State Management)
+* **Recharts** (Data Visualization)
+
+### Backend
+* **FastAPI** (Web Framework)
+* **MongoDB** (Database - via PyMongo/MongoEngine)
+* **LangChain** (AI Orchestration)
+* **Groq** (LLaMA 3 Inference)
+* **Hugging Face** (BioBERT Models)
+* **Cryptography** (AES-256 Data Encryption)
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+* **Node.js** (v18 or higher)
+* **Python** (v3.9 or higher)
+* **MongoDB** (Local instance or MongoDB Atlas)
+* Git
+
 ## 🚀 Quick Start
 
 ### 1. Clone the Repository
@@ -61,3 +86,40 @@ Visit `http://localhost:3000` to start chatting!
 This project uses strict environment variables to keep API keys secure. **Never commit your `.env` file to version control.**
 * Obtain a free Groq API Key for LLaMA 3 capabilities.
 * Obtain a free Hugging Face Token for BioBERT capabilities.
+
+## 📂 Project Structure
+
+```text
+aihealthcare/
+├── backend/            # FastAPI server, AI models, database logic
+│   ├── app/            # Application code (routers, models, services)
+│   ├── tests/          # Backend unit tests
+│   ├── requirements.txt
+│   └── main.py
+├── frontend/           # React frontend application
+│   ├── src/            # Components, pages, hooks, state
+│   ├── package.json
+│   └── vite.config.js
+└── README.md
+```
+
+## 📖 API Documentation
+
+Once the backend is running, FastAPI automatically generates interactive API documentation.
+You can access it by navigating to:
+* **Swagger UI:** `http://localhost:8000/docs`
+* **ReDoc:** `http://localhost:8000/redoc`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
